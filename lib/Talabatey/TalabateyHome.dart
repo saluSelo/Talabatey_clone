@@ -66,7 +66,7 @@ class _TalabateyHomeState extends State<TalabateyHome> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.account_circle_outlined,
-                size: 30,
+                size: 27,
                 color: Colors.grey,
               ),
               label: 'الحساب',
@@ -74,7 +74,7 @@ class _TalabateyHomeState extends State<TalabateyHome> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.receipt_long,
-                size: 30,
+                size: 27,
                 color: Colors.grey,
               ),
               label: 'الطلبات',
@@ -82,7 +82,7 @@ class _TalabateyHomeState extends State<TalabateyHome> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.wallet,
-                size: 30,
+                size: 27,
                 color: Colors.grey,
               ),
               label: 'المحفظة',
@@ -90,7 +90,7 @@ class _TalabateyHomeState extends State<TalabateyHome> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                size: 30,
+                size: 27,
                 color: Colors.red,
               ),
               label: 'الرئيسية',
