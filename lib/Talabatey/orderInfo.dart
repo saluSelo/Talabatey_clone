@@ -374,7 +374,7 @@ class _orderInfoState extends State<orderInfo> {
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500,
                                       color: count == 0
-                                          ? Colors.black
+                                          ? Color(0xff5c5c5c)
                                           : Colors.white),
                                 )),
                               )
