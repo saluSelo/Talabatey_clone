@@ -343,8 +343,8 @@ class _orderInfoState extends State<orderInfo> {
                                 children: [
                                   Text("د.ع",
                                       style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
                                           fontFamily: 'Tajawal',
                                           color: Colors.red)),
                                   SizedBox(
@@ -352,8 +352,8 @@ class _orderInfoState extends State<orderInfo> {
                                   ),
                                   Text("${foodPrice * count}",
                                       style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w600,
                                           fontFamily: 'Tajawal',
                                           color: Colors.red)),
                                 ],
