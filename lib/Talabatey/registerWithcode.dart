@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'TalabateyHome.dart';
 
@@ -37,11 +38,12 @@ class _registerWithcodeState extends State<registerWithcode> {
               SizedBox(
                 height: 37,
               ),
-              textinput('الاسم', '0/15', name),
+              textinput('الاسم', '${name.text.length}/15', name, 15),
               SizedBox(
                 height: 35,
               ),
-              textinput('رقم الهاتف', '0/11', phonenumber),
+              textinput('رقم الهاتف', '${phonenumber.text.length}/11',
+                  phonenumber, 11),
               SizedBox(
                 height: 35,
               ),
@@ -78,7 +80,7 @@ class _registerWithcodeState extends State<registerWithcode> {
               SizedBox(
                 height: 35,
               ),
-              textinput('رمز المشاركة', '', code),
+              textinput('رمز المشاركة', '', code, null),
               SizedBox(
                 height: 35,
               ),
@@ -106,7 +108,8 @@ class _registerWithcodeState extends State<registerWithcode> {
     );
   }
 
-  Stack textinput(String hintinput, String numOfChars, var controllerLabel) {
+  Stack textinput(
+      String hintinput, String numOfChars, var controllerLabel, var length) {
     return Stack(children: [
       Container(
         decoration: BoxDecoration(
@@ -114,16 +117,20 @@ class _registerWithcodeState extends State<registerWithcode> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: TextField(
-          controller: controllerLabel,
-          decoration: InputDecoration(
-            hintStyle: TextStyle(
-                fontSize: 20, fontFamily: 'Tajawal', color: Color(0xffbfbfbf)),
-            hintText: hintinput,
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.all(20),
-          ),
-          textAlign: TextAlign.end,
-        ),
+            controller: controllerLabel,
+            decoration: InputDecoration(
+              hintStyle: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Tajawal',
+                  color: Color(0xffbfbfbf)),
+              hintText: hintinput,
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(20),
+            ),
+            textAlign: TextAlign.end,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(length),
+            ]),
       ),
       Positioned(
           bottom: 15,

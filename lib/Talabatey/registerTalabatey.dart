@@ -52,7 +52,7 @@ class _registerPageState extends State<registerPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => registerWithcode()));
                   },
-                  child: Hero(
+                  child: const Hero(
                     tag: 'page',
                     child: Icon(
                       Icons.arrow_left_sharp,
