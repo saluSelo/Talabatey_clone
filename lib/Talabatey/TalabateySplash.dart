@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talabatey_clone/Talabatey/registerTalabatey.dart';
 import 'TalabateyHome.dart';
 
 class TalabateySplash extends StatefulWidget {
@@ -13,7 +14,7 @@ class _TalabateySplashState extends State<TalabateySplash> {
     await Future.delayed(const Duration(seconds: 5), () {
       // 5s over, navigate to a new page
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => TalabateyHome()));
+          .push(MaterialPageRoute(builder: (context) => registerPage()));
     });
   }
 

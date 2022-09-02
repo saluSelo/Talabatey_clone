@@ -1,5 +1,8 @@
-import 'package:carousel_images/carousel_images.dart';
 import 'package:flutter/material.dart';
+import 'package:talabatey_clone/Talabatey/myCategoriesData.dart';
+import 'package:talabatey_clone/Talabatey/myInfoData.dart';
+import 'package:talabatey_clone/Talabatey/myPopResData.dart';
+import 'package:talabatey_clone/Talabatey/myPostsData.dart';
 
 class TalabateyHome extends StatefulWidget {
   @override
@@ -8,14 +11,6 @@ class TalabateyHome extends StatefulWidget {
 
 class _TalabateyHomeState extends State<TalabateyHome> {
   Color myColor = Color(0xFF000000);
-
-  final List<String> listImages = [
-    'images/shawarma.jpg',
-    'images/pizza.jpg',
-    'images/burger.jpg',
-    'images/pasta.jpg',
-    'images/Kabab.jpg',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -107,31 +102,15 @@ class _TalabateyHomeState extends State<TalabateyHome> {
                 Container(
                   height: 145,
                   width: MediaQuery.of(context).size.width,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          category(
-                              0xFFF44336, 'images/talabatey.png', 'المطاعم'),
-                          category(
-                              0xFFEEEEEE, 'images/shopping_cart.png', 'ماركت'),
-                          category(0xFFFFEB3B, 'images/diet.png', 'دايت فود'),
-                          category(0xFF86e3ce, 'images/sweet.png', 'حلويات'),
-                          category(
-                              0xFF763b3f, 'images/coffee.png', 'البن و القهوة'),
-                          category(
-                              0xFFb90018, 'images/breakfast.png', 'فطور صباحي'),
-                          category(0xFF86e3ce, 'images/pastries.png', 'معجنات'),
-                          category(
-                              0xFFFf2a392, 'images/seafood.png', 'البحرية'),
-                          category(0xFFFc75250, 'images/food.png',
-                              'التجهيزات الغذائية'),
-                        ],
-                      )
-                    ],
-                  ),
+                  child: ListView.builder(
+                      itemCount: myCategories.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return category(
+                            myCategories[index]['color'],
+                            myCategories[index]['image'],
+                            myCategories[index]['name']);
+                      }),
                 ),
                 SizedBox(
                   height: 10,
@@ -160,54 +139,56 @@ class _TalabateyHomeState extends State<TalabateyHome> {
                 SizedBox(
                   height: 15,
                 ),
-                CarouselImages(
-                  scaleFactor: 1,
-                  listImages: listImages,
-                  height: 130.0,
-                  borderRadius: 30.0,
-                  cachedNetworkImage: true,
-                  verticalAlignment: Alignment.bottomCenter,
+                Container(
+                  height: 200,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: myPopRes.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return popRes(myPopRes[index]['image'],
+                            myPopRes[index]['restName']);
+                      }),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Container(
                   height: 50,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      info("الكل", Icons.home),
-                      info("خصومات", Icons.percent),
-                      info('يدعم المحفظة',
-                          Icons.account_balance_wallet_outlined),
-                      info('توصيل طلباتي', Icons.delivery_dining_outlined),
-                      info('توصيل مجاني', Icons.card_giftcard_outlined),
-                      info('حصري', Icons.star_border_outlined)
-                    ],
-                  ),
+                  child: ListView.builder(
+                      itemCount: myInfo.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return info(
+                          myInfo[index]['text'],
+                          myInfo[index]['icon'],
+                        );
+                      }),
                 ),
-                posts('images/burger.jpg', 'بديز بركر', 'ممتاز', 'اليرموك'),
-                posts('images/Lavinto.jpg', 'Lavinto', "ممتاز", "الكرادة"),
-                posts("images/Casper's.jpg", "Casper's & Gambini", "متوسط",
-                    "زيونة"),
-                posts("images/shmesani.jpg", "شميساني", "جيد جدا", "المنصور"),
-                posts('images/fern.jpg', 'the fern', "جيد جدا", "اليرموك"),
-                posts("images/Hardee's.jpg", "Hardee's", 'ممتاز', 'الحارثية'),
-                posts('images/Firefly_Burger.jpg', 'Firefly Burger', "ممتاز",
-                    "الاعظمية"),
-                posts('images/shawarma2.jpg', 'الدمشقي', "جيد جدا", 'الكرادة')
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                      itemCount: myposts.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (BuildContext context, int index) {
+                        return posts(
+                          myposts[index]['image'],
+                          myposts[index]['restName'],
+                          myposts[index]['restLoc'],
+                          myposts[index]['restRate'],
+                        );
+                      }),
+                ),
               ],
             )),
           ],
         ));
   }
 
-  GestureDetector category(var colorcode, String image, String textOfCategory) {
+  GestureDetector category(var colorcode, var image, var textOfCategory) {
     return GestureDetector(
         onTap: () {
-          setState(() {
-            myColor = Colors.red;
-          });
+          setState(() {});
         },
         child: Column(
           children: [
@@ -372,6 +353,28 @@ class _TalabateyHomeState extends State<TalabateyHome> {
           )
         ],
       ),
+    );
+  }
+
+  Widget popRes(String Image, String popResName) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: 150,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              image:
+                  DecorationImage(image: AssetImage(Image), fit: BoxFit.cover)),
+        ),
+        Text(
+          popResName,
+          style: TextStyle(
+              fontSize: 25, color: Colors.red, fontWeight: FontWeight.w500),
+        )
+      ],
     );
   }
 }
